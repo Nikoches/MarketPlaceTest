@@ -1,9 +1,10 @@
-package Models.Auto;
+package models.auto;
 
 
-import Models.Items.Item;
+import models.items.Item;
 
 import javax.persistence.*;
+import java.util.Iterator;
 
 @Entity
 @Table(name = "car")
@@ -27,7 +28,7 @@ public class Car {
     private int id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    @JoinColumn(name = "item_id")
     private Item itemId;
 
     @Column(name = "model")
@@ -95,14 +96,14 @@ public class Car {
     }
 
     public void setId(int id) {
-        id = id;
+        this.id = id;
     }
 
     public Item getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
-        itemId = itemId;
+    public void setItemId(Item itemId) {
+        this.itemId = itemId;
     }
 }

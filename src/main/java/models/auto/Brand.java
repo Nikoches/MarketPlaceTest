@@ -1,8 +1,8 @@
-package Models.Auto;
+package models.auto;
 
 import javax.persistence.*;
 
-@Entity(name = "Brand")
+@Entity
 @Table(name = "brands")
 public class Brand {
 

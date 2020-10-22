@@ -1,4 +1,4 @@
-package Models.Auto;
+package models.auto;
 
 import javax.persistence.*;
 
@@ -13,6 +13,11 @@ public class Body {
     private int id;
 
     public Body() {
+    }
+
+    public Body(String name, int id) {
+        this.name = name;
+        this.id = id;
     }
 
     public String getName() {

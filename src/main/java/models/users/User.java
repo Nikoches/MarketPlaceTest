@@ -1,9 +1,10 @@
-package Models.Users;
+package models.users;
 
-import Models.Items.Item;
+import models.items.Item;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -12,13 +13,13 @@ public class User {
     private int id;
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "items")
-    private List<Item> itemList;
+    @OneToMany(mappedBy = "user")
+    private Set<Item> itemList;
 
     public User() {
     }
 
-    public User(int id, String name, List<Item> itemList) {
+    public User(int id, String name, Set<Item> itemList) {
         this.id = id;
         this.name = name;
         this.itemList = itemList;
@@ -39,12 +40,12 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-   // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    public List<Item> getItemList() {
+
+    public Set<Item> getItemList() {
         return itemList;
     }
 
-    public void setItemList(List<Item> itemList) {
+    public void setItemList(Set<Item> itemList) {
         this.itemList = itemList;
     }
 }

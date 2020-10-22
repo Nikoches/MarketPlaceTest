@@ -1,7 +1,7 @@
-package Models.Items;
+package models.items;
 
-import Models.Auto.Car;
-import Models.Users.User;
+import models.auto.Car;
+import models.users.User;
 
 import javax.persistence.*;
 
@@ -12,18 +12,18 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne( cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_Car", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_car", referencedColumnName = "id")
     private Car car;
 
-    @OneToOne( cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_user")
     private User user;
 
     public Item() {
     }
 
-    public Item(Car car, Models.Users.User user, int id) {
+    public Item(Car car, User user, int id) {
         this.id = id;
         this.car = car;
         this.user = user;
@@ -45,11 +45,11 @@ public class Item {
         this.car = car;
     }
 
-    public Models.Users.User getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Models.Users.User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

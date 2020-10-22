@@ -1,6 +1,4 @@
-package Models.Auto;
-
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+package models.auto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +12,15 @@ public class Engine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    public Engine() {
+
+    }
+
+    public Engine(String type, int id) {
+        this.type = type;
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
@@ -22,19 +29,11 @@ public class Engine {
         this.id = id;
     }
 
-    public Engine(){
-
-    }
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public Engine(String type,int id) {
-        this.type = type;
-        this.id = id;
     }
 }
