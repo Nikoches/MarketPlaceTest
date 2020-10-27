@@ -9,6 +9,8 @@ import persistence.implementation.PersistenceUsers;
 import persistence.ItemsStore;
 import persistence.UsersStore;
 
+import java.util.List;
+
 public class ServiceMain<E> {
     private final CarStore<Car> carStore = new PersistenceCars();
     private final UsersStore usersStore = new PersistenceUsers();
@@ -23,4 +25,6 @@ public class ServiceMain<E> {
     public static ServiceMain getServiceMain() {
         return serviceMain;
     }
+
+
 }
