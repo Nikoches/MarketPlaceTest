@@ -2,6 +2,7 @@ package servlets;
 
 
 
+import models.auto.Car;
 import persistence.implementation.PersistenceCars;
 
 import javax.servlet.ServletException;
@@ -17,10 +18,7 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("users", pers.findlAll());
+        request.setAttribute("cars", pers.findlAll(new Car()));
         request.getRequestDispatcher("Views/index.ftl").forward(request, response);
-
     }
-
-
 }

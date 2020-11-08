@@ -1,16 +1,16 @@
 <html>
-<head><title>FreeMarker Hello World</title>
+<head><title>Cars</title>
 
 <body>
 
 
 <table class="datatable">
     <tr>
-        <th>Model</th>  <th>Color</th>
+        <th>Brand</th>  <th>Model</th> <th>Engine</th> <th>Body</th> <th>Color</th>
     </tr>
-    <#list users as user>
+    <#list cars as car>
     <tr>
-        <td>${user.model}</td> <td>${user.color}</td>
+        <td>${car.brand.name}</td> <td>${car.model}</td>  <td>${car.engine.type}</td> <td>${car.body.name}</td> <td>${car.color}</td>
     </tr>
 </#list>
 </table>

@@ -10,16 +10,6 @@ import java.util.Set;
 public class PersistenceUsers implements UsersStore {
 
     @Override
-    public List<User> findlAll() {
-        return null;
-    }
-
-    @Override
-    public void removeAll() {
-
-    }
-
-    @Override
     public Set<Item> getItemsOfUser(User user) {
         return user.getItemList();
     }
