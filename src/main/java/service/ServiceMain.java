@@ -1,48 +1,60 @@
 package service;
 
+import models.auto.Body;
+import models.auto.Brand;
 import models.auto.Car;
-import models.items.Item;
-import models.users.User;
-import persistence.CarStore;
-import persistence.implementation.PartsStore;
-import persistence.implementation.PersistenceCars;
-import persistence.implementation.PersistenceItems;
-import persistence.implementation.PersistenceUsers;
-import persistence.ItemsStore;
-import persistence.UsersStore;
+import models.auto.Engine;
+import persistence.General;
+import persistence.implementation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.function.Supplier;
 
 
 public class ServiceMain<E> {
     private final static ServiceMain serviceMain = new ServiceMain();
-    private final CarStore<Car> carStore = new PersistenceCars();
-    private final UsersStore usersStore = new PersistenceUsers();
-    private final ItemsStore itemsStore = new PersistenceItems();
-    private final PartsStore<E> ePartsStore = new PartsStore<>();
+    private final  PersistenceCars carStore = new PersistenceCars();
+    private final  PersistenceUsers usersStore = new PersistenceUsers();
+    private final static PersistenceItems itemsStore = new PersistenceItems();
+    private final HashMap<String, General> maps = new HashMap<>();
 
     private ServiceMain() {
-
+        maps.put("cars", carStore);
+        maps.put("users", usersStore);
+        maps.put("items", itemsStore);
+        maps.put("body", new PartsStore<>(() -> Body.class));
+        maps.put("brands", new PartsStore<>(() -> Brand.class));
+        maps.put("engines", new PartsStore<>(() -> Engine.class));
     }
 
     public static ServiceMain getServiceMain() {
         return serviceMain;
     }
 
-    public List<E> getParts(E type) {
-        return ePartsStore.findlAll(type);
+    public static void main(String... args) {
+        ServiceMain serviceMain = getServiceMain();
+        List<Car> cars = serviceMain.getListGeneral("cars");
+        String name = cars.get(0).getItemId().getUser().getName();
+        System.out.println();
+        //serviceMain.remove("cars", car);
     }
 
-    public List<Car> getCars() {
-        return carStore.findlAll(new Car());
+    public List<E> getListGeneral(String type) {
+        return maps.get(type).findAll();
     }
 
-    public List<Item> getItems() {
-        return itemsStore.findlAll(new Item());
+    public void removeAll(String type) {
+        maps.get(type).removeAll();
     }
 
-    public List<User> getUsers() {
-        return usersStore.findlAll(new User());
+    public E getById(String type, Integer id) {
+        return (E) maps.get(type).findById(id);
     }
 
+    public void remove(String type, E part) {
+        maps.get(type).remove(part);
+    }
 }

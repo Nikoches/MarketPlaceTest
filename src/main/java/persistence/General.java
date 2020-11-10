@@ -27,7 +27,7 @@ public interface General<E> {
         }
         return null;
     }
-
+    Class<E> setType();
     default E add(E part) {
         return this.makeQuery(session -> {
             session.save(part);
@@ -49,21 +49,20 @@ public interface General<E> {
         });
     }
 
-    default List<E> findlAll(E type) {
+    default List<E> findAll() {
         Session session = SESSION_FACTORY.openSession();
-        Transaction tx = session.beginTransaction();
-        return session.createQuery("from " + type.getClass().getCanonicalName()).list();
+        //Transaction tx = session.beginTransaction();
+        return session.createQuery("from " + setType().getCanonicalName()).list();
     }
 
-
-    default void removeAll(E type) {
+    default void removeAll() {
         Session session = SESSION_FACTORY.openSession();
         Transaction tx = session.beginTransaction();
-        session.createQuery("delete from " + type.getClass().getCanonicalName()).executeUpdate();
+        session.createQuery("delete from " + setType().getCanonicalName()).executeUpdate();
         tx.commit();
     }
 
-    default E findById(Integer id, Class<E> cl) {
-        return this.makeQuery(session -> session.get(cl, id));
+    default E findById(Integer id) {
+        return this.makeQuery(session -> session.get(setType(), id));
     }
 }

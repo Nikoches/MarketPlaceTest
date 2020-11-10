@@ -1,12 +1,18 @@
 package persistence.implementation;
 
-import models.auto.Car;
-import persistence.General;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-import java.util.List;
+import persistence.General;
+
+import java.util.function.Supplier;
 
 public class PartsStore<E> implements General<E> {
+    private final Supplier<Class<E>> getterClass;
+    public PartsStore(Supplier<Class<E>> eSupplier) {
+        this.getterClass = eSupplier;
+    }
+    @Override
+    public Class<E> setType() {
+        return getterClass.get();
+    }
 
 }

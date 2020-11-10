@@ -3,28 +3,32 @@ package persistence.implementation;
 import models.auto.Car;
 import models.items.Item;
 import models.users.User;
-import persistence.ItemsStore;
+import persistence.General;
+
+public class PersistenceItems implements General<Item> {
 
 
-public class PersistenceItems implements ItemsStore {
-
-    @Override
     public Car getCarOfItem(String id) {
         return null;
     }
 
-    @Override
+
     public Car getCarOfItem(Item item) {
         return null;
     }
 
-    @Override
+
     public User getUserOfItem(User user) {
         return null;
     }
 
-    @Override
+
     public User getUserOfItem(String id) {
         return null;
+    }
+
+    @Override
+    public Class<Item> setType() {
+        return Item.class;
     }
 }
