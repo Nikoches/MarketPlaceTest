@@ -13,7 +13,7 @@
 
     <script>
         function validate() {
-            if ($('#email').val() == '' || $('#pwd').val() == '') {
+            if ($('#email').val() === '') {
                 alert("Required fields empty!");
                 return false;
             }
@@ -21,15 +21,12 @@
     </script>
 </head>
 <body>
-<form method="post" action="Login" >
+<form method="post" action="login" >
     <p>Credentials</p>
     <div class="form-group">
-        <label for="email"> Username:</label>
-        <input type="text" class="form-control" id="email" name="user">
-    </div>
-    <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" name="pwd">
+        <label for="username"> Username:</label>
+        <input type="text" class="form-control" id="username" name="username">
+        <input type="hidden" value="login" id="act" name="act">
     </div>
     <button type="submit" onclick="return validate();" class="btn btn-default">Submit</button>
 </form>

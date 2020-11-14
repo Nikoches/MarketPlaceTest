@@ -4,6 +4,7 @@ import models.auto.Body;
 import models.auto.Brand;
 import models.auto.Car;
 import models.auto.Engine;
+import models.users.User;
 import persistence.General;
 import persistence.implementation.*;
 
@@ -34,14 +35,6 @@ public class ServiceMain<E> {
         return serviceMain;
     }
 
-    public static void main(String... args) {
-        ServiceMain serviceMain = getServiceMain();
-        List<Car> cars = serviceMain.getListGeneral("cars");
-        String name = cars.get(0).getItemId().getUser().getName();
-        System.out.println();
-        //serviceMain.remove("cars", car);
-    }
-
     public List<E> getListGeneral(String type) {
         return maps.get(type).findAll();
     }
@@ -56,5 +49,13 @@ public class ServiceMain<E> {
 
     public void remove(String type, E part) {
         maps.get(type).remove(part);
+    }
+
+    public void add(String type, E part) {
+        maps.get(type).add(part);
+    }
+
+    public boolean authentificate(String userName) {
+        return serviceMain.getListGeneral("users").contains(new User(userName));
     }
 }

@@ -18,7 +18,9 @@ public class User {
 
     public User() {
     }
-
+    public User(String name) {
+        this.name = name;
+    }
     public User(int id, String name, Set<Item> itemList) {
         this.id = id;
         this.name = name;
@@ -47,5 +49,28 @@ public class User {
 
     public void setItemList(Set<Item> itemList) {
         this.itemList = itemList;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+
+            // If the object is compared with itself then return true
+            if (obj == this) {
+                return true;
+            }
+
+        /* Check if o is an instance of Complex or not
+          "null instanceof [type]" also returns false */
+            if (!(obj instanceof User)) {
+                return false;
+            }
+
+            // typecast o to Complex so that we can compare data members
+            User c = (User) obj;
+
+            // Compare the data members and return accordingly
+            return this.name.equals(c.getName());
+
     }
 }

@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "login",urlPatterns = "/logi")
+@WebServlet(name = "test",urlPatterns = "/test")
 public class MainController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("Views/login.ftl").forward(request, response);
+        request.getRequestDispatcher("Views/test.ftl").forward(request, response);
     }
 
     @Override
