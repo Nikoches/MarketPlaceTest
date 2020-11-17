@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
                 Cookie userName = new Cookie("username", req.getParameter("username"));
                 userName.setMaxAge(30 * 60);
                 resp.addCookie(userName);
-                req.getRequestDispatcher("Views/index.ftl").forward(req, resp);
+                req.getRequestDispatcher("Views/index.ftl").forward(req,resp);
             }
         } else {
             if(!(req.getCookies() == null)) {

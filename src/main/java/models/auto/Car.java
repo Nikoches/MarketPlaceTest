@@ -30,12 +30,12 @@ public class Car {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id")
     private Item itemId;
-
     @Column(name = "model")
     private String model;
-
     @Column(name = "color")
     private String color;
+    @Column(name = "image_name")
+    private String image;
 
     public Car(Body body, Engine engine, Brand brand, int id, Item itemId, String model, String color) {
         this.body = body;
@@ -46,9 +46,16 @@ public class Car {
         this.model = model;
         this.color = color;
     }
-
     public Car() {
 
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getColor() {

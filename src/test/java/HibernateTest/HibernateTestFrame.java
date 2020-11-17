@@ -23,7 +23,7 @@ public class HibernateTestFrame {
     @DisplayName("Adding new Car and get list of cars")
     public void AddAndGetCarsTest() {
         List<Car> cars = serviceMain.getListGeneral("cars");
-        List<Car> carsTest = new LinkedList<>();
+
     }
     @Test
     public void optionaltest(){

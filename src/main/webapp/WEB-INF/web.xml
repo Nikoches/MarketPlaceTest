@@ -8,12 +8,14 @@
                              http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          id="WebApp_9" version="2.4">
     <display-name>Servlet Hello World</display-name>
-
     <display-name>FreeMarker_Hello_World</display-name>
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
-
+    <context-param>
+        <param-name>upload_path</param-name>
+        <param-value>C:\Tools\apache-tomcat-9.0.39\webapps\MarketPlaceTest_war\images</param-value>
+    </context-param>
     <servlet>
         <servlet-name>freemarker</servlet-name>
         <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>

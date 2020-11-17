@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating Car</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+
+<form name="loginForm" method="post" action="saveCar" enctype="multipart/form-data" content="notnull">
+    <label for="Brand"> Brand:</label>
+    <input type="text" class="form-control" id="Brand" name="Brand">
+    <br>
+    <label for="Model"> Model:</label>
+    <input type="text" class="form-control" id="Model" name="Model">
+    <br>
+    <label for="Engine"> Engine:</label>
+    <input type="text" class="form-control" id="Engine" name="Engine">
+    <br>
+    <label for="Body"> Body:</label>
+    <input type="text" class="form-control" id="Body" name="Body">
+    <br>
+    <label for="Color"> Email:</label>
+    <input type="text" class="form-control" id="Color" name="Color">
+    <br>
+    <br>
+    <div class="checkbox">
+        <label for="file"> File upload:</label>
+        <input type="file" name="file">
+    </div>
+    <p>  </p>
+    <button type="submit"  class="btn btn-default">Submit</button>
+</form>
+</body>
+</html>

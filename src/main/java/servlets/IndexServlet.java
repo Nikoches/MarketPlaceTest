@@ -18,10 +18,9 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println(request.getAuthType());
-        request.authenticate(response);
         List carsList =  serviceMain.getListGeneral("cars");
         request.setAttribute("cars", carsList);
         request.getRequestDispatcher("Views/index.ftl").forward(request, response);
     }
+
 }

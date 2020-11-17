@@ -2,17 +2,13 @@ package service;
 
 import models.auto.Body;
 import models.auto.Brand;
-import models.auto.Car;
 import models.auto.Engine;
 import models.users.User;
 import persistence.General;
 import persistence.implementation.*;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Supplier;
+
 
 
 public class ServiceMain<E> {

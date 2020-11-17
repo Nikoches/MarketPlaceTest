@@ -31,18 +31,37 @@
 </head>
 
 <body>
+<form action="saveCar" method="get">
+    <br> <button formmethod="get" type="submit" onclick="location.href = 'saveCar';" class="btn btn-primary" >SaveCar</button>
+</form>
 <br>
 
 <table class="datatable" >
     <br>
     <div class="layer1">All cars for sale</div>
+    <br>
     <tr>
-        <th>Brand</th>   <th>Model</th>   <th>Engine</th>   <th>Body</th>   <th>Color</th>   <th>User</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Engine</th>
+        <th>Body</th>
+        <th>Color</th>
+        <th>User</th>
+        <th>Image</th>
+        <th>Image name</th>
     </tr>
     <#list cars as car>
     <tr>
-        <td>${car.brand.name}</td> <td>${car.model}</td>  <td>${car.engine.type}</td> <td>${car.body.name}</td> <td>${car.color}</td> <td>${car.itemId.user.name}</td> <td><img src="images/mercedes.png"/></td>
+        <td>${car.brand.name}</td>
+        <td>${car.model}</td>
+        <td>${car.engine.type}</td>
+        <td>${car.body.name}</td>
+        <td>${car.color}</td>
+        <td>${car.itemId.user.name}</td>
+        <td><img src="/marketplaceTest/load?name=${car.image}" width="100px" height="100px" alt="beautiful car"/></td>
+        <td>${car.image}</td>
     </tr>
+
 </#list>
 </table>
 </body>
