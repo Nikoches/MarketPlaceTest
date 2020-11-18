@@ -6,10 +6,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 
-@WebFilter(displayName = "AuthFilter", servletNames = {"index", "test"})
+@WebFilter(displayName = "AuthFilter", servletNames = {"index", "saveCar"})
 public class AuthenticationFilter implements Filter {
     private ServletContext context;
 

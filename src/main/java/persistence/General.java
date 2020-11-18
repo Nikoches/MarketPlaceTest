@@ -35,7 +35,7 @@ public interface General<E> {
         });
     }
 
-    default E update(E part, String id) {
+    default E update(E part) {
         return this.makeQuery(session -> {
             session.update(part);
             return part;
@@ -51,7 +51,6 @@ public interface General<E> {
 
     default List<E> findAll() {
         Session session = SESSION_FACTORY.openSession();
-        //Transaction tx = session.beginTransaction();
         return session.createQuery("from " + setType().getCanonicalName()).list();
     }
 

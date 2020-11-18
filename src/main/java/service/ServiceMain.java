@@ -2,10 +2,16 @@ package service;
 
 import models.auto.Body;
 import models.auto.Brand;
+import models.auto.Car;
 import models.auto.Engine;
+import models.items.Item;
 import models.users.User;
+import org.apache.commons.fileupload.FileItem;
 import persistence.General;
 import persistence.implementation.*;
+
+import java.io.File;
+import java.net.http.HttpRequest;
 import java.util.HashMap;
 import java.util.List;
 
@@ -53,5 +59,38 @@ public class ServiceMain<E> {
 
     public boolean authentificate(String userName) {
         return serviceMain.getListGeneral("users").contains(new User(userName));
+    }
+
+    public void update(String type,E part) {
+        maps.get(type).update(part);
+    }
+
+    public Car createCar(List<FileItem> items, String path,String username) {
+        HashMap<String,String> params = new HashMap<>();
+        Car car = new Car();
+        try {
+            for (FileItem fileItem : items) {
+                if (!fileItem.isFormField()) {
+                    if (!fileItem.isFormField()) {
+                        fileItem.write(new File(path + File.separator + fileItem.getName()));
+                        car.setImage(fileItem.getName());
+                    }
+                }else {
+                    params.put(fileItem.getFieldName(), fileItem.getString());
+                }
+            }
+        }catch (Exception ex){
+            ex.getMessage();
+            ex.printStackTrace();
+        }
+        car.setColor(params.get("color"));
+        car.setBody((Body)getById("body",Integer.parseInt(params.get("body"))));
+        car.setBrand((Brand) getById("brand",Integer.parseInt(params.get("brand"))));
+        car.setEngine((Engine)getById("engine",Integer.parseInt(params.get("engine"))));
+        Item item = new Item();
+        item.setCar(car);
+        //TODO установить итем
+        //item.setUser();
+        return car;
     }
 }
