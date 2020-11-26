@@ -14,7 +14,7 @@
     </welcome-file-list>
     <context-param>
         <param-name>upload_path</param-name>
-        <param-value>C:\Tools\apache-tomcat-9.0.39\webapps\MarketPlaceTest_war\images</param-value>
+        <param-value>C:\Tools\apache-tomcat-9.0.39\bin\images</param-value>
     </context-param>
     <servlet>
         <servlet-name>freemarker</servlet-name>

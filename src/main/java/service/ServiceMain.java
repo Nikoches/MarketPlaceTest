@@ -65,7 +65,7 @@ public class ServiceMain<E> {
         maps.get(type).update(part);
     }
 
-    public Car createCar(List<FileItem> items, String path,String username) {
+    public Car createCar(List<FileItem> items, String path,String username,String userId) {
         HashMap<String,String> params = new HashMap<>();
         Car car = new Car();
         try {
@@ -89,8 +89,8 @@ public class ServiceMain<E> {
         car.setEngine((Engine)getById("engine",Integer.parseInt(params.get("engine"))));
         Item item = new Item();
         item.setCar(car);
-        //TODO установить итем
-        //item.setUser();
+        User user = usersStore.findById(Integer.parseInt(userId));
+        item.setUser(usersStore.findById(Integer.parseInt(userId)));
         return car;
     }
 }

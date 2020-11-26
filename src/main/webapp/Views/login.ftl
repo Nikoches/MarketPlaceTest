@@ -23,6 +23,11 @@
 <body>
 <form method="post" action="login" >
     <p>Credentials</p>
+    <br>
+        <#if incorrect??>
+            <p style="font-family:verdana,monospace;color: crimson">Unauthorized access request</p>
+        </#if>
+    <br>
     <div class="form-group">
         <label for="username"> Username:</label>
         <input type="text" class="form-control" id="username" name="username">
