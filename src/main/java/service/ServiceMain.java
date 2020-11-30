@@ -7,6 +7,7 @@ import models.auto.Engine;
 import models.items.Item;
 import models.users.User;
 import org.apache.commons.fileupload.FileItem;
+import org.hibernate.query.Query;
 import persistence.General;
 import persistence.implementation.*;
 
@@ -23,7 +24,7 @@ public class ServiceMain<E> {
     private final  PersistenceUsers usersStore = new PersistenceUsers();
     private final static PersistenceItems itemsStore = new PersistenceItems();
     private final HashMap<String, General> maps = new HashMap<>();
-
+    private final HashMap<String,String> carsFilter = new HashMap<>();
     private ServiceMain() {
         maps.put("cars", carStore);
         maps.put("users", usersStore);
@@ -31,6 +32,8 @@ public class ServiceMain<E> {
         maps.put("body", new PartsStore<>(() -> Body.class));
         maps.put("brands", new PartsStore<>(() -> Brand.class));
         maps.put("engines", new PartsStore<>(() -> Engine.class));
+        carsFilter.put("by_model","from car where model=?");
+        carsFilter.put("withFoto","from car where image_name<>noImg");
     }
 
     public static ServiceMain getServiceMain() {
@@ -60,15 +63,17 @@ public class ServiceMain<E> {
     public boolean authentificate(String userName) {
         return serviceMain.getListGeneral("users").contains(new User(userName));
     }
-
+    public List<Car> getCarsByCriteria(String type, String model) {
+        return carStore.getAllByCriteria(type,model);
+    }
     public void update(String type,E part) {
         maps.get(type).update(part);
     }
-
     public Car createCar(List<FileItem> items, String path,String username,String userId) {
         HashMap<String,String> params = new HashMap<>();
         Car car = new Car();
         try {
+            car.setImage("noImg");
             for (FileItem fileItem : items) {
                 if (!fileItem.isFormField()) {
                     if (!fileItem.isFormField()) {

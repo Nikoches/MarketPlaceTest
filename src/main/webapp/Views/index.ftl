@@ -39,6 +39,8 @@
    <tr>
        <th><button formmethod="get" type="submit" onclick="location.href = 'saveCar';" class="btn btn-primary" >Create Car</button></th>
        <th><button formmethod="post" type="submit" onclick="location.href = 'login?act=unlogin';" class="btn btn-primary" >Unlogin</button></th>
+       <th><button formmethod="get" type="submit" onclick="location.href = 'index';" class="btn btn-primary" >All Cars</button></th>
+       <th><button formmethod="get" type="submit" onclick="location.href = 'index?action=Noimg';" class="btn btn-primary" >Cars with photo only</button></th>
        <th>${Session.user_name}</th>
    </tr>
 </table>
@@ -58,6 +60,7 @@
     </tr>
     <#list cars as car>
     <tr>
+        <th><button formmethod="get" type="submit" onclick="location.href = 'index?action=model&modelNum='+${car.brand.id};" class="btn btn-primary" >${car.brand.name}</button></th>
         <td>${car.brand.name}</td>
         <td>${car.model}</td>
         <td>${car.engine.type}</td>
@@ -68,7 +71,7 @@
         <td>${car.image}</td>
         <td>
             <#if Session.user_name??>
-                <#if Session.user_id == car.itemId.user.name+"">
+                <#if Session.user_name == car.itemId.user.name+"">
                     <button formmethod="get" type="submit" onclick="location.href = 'update';" class="btn btn-primary" >Update Car</button>
                 </#if>
             </#if>

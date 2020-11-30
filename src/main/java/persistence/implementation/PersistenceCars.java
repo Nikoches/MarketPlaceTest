@@ -3,16 +3,17 @@ package persistence.implementation;
 
 import models.auto.Car;
 import models.items.Item;
-
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import persistence.General;
-
 import java.util.List;
-import java.util.function.Function;
 
-public class PersistenceCars<E>  implements General<Car> {
+
+public class PersistenceCars<E> implements General<Car> {
+
+    public PersistenceCars() {
+
+    }
 
     public Item getItemFromCar(Car car) {
         return car.getItemId();
@@ -22,4 +23,18 @@ public class PersistenceCars<E>  implements General<Car> {
         return Car.class;
     }
 
+    public List<Car> getAllByCriteria(String type,String model) {
+        Session session = SESSION_FACTORY.openSession();
+        Query query;
+        if(type.equals("model")) {
+            query = session.createQuery("from Car where brand.id = :model");
+            query.setParameter( "model",Integer.parseInt(model));
+        }else if(type.equals("Noimg")){
+            query = session.createQuery("from Car where image<>'noImg' ");
+        }else {
+            query = session.createQuery("from Car");
+        }
+
+       return query.list();
+    }
 }
