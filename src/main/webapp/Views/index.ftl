@@ -41,6 +41,7 @@
        <th><button formmethod="post" type="submit" onclick="location.href = 'login?act=unlogin';" class="btn btn-primary" >Unlogin</button></th>
        <th><button formmethod="get" type="submit" onclick="location.href = 'index';" class="btn btn-primary" >All Cars</button></th>
        <th><button formmethod="get" type="submit" onclick="location.href = 'index?action=Noimg';" class="btn btn-primary" >Cars with photo only</button></th>
+       <th><button formmethod="get" type="submit" onclick="location.href = 'index?action=lastday';" class="btn btn-primary" >Yesterday Cars</button></th>
        <th>${Session.user_name}</th>
    </tr>
 </table>
@@ -57,6 +58,7 @@
         <th>User</th>
         <th>Image</th>
         <th>Image name</th>
+        <th>update?</th>
     </tr>
     <#list cars as car>
     <tr>
@@ -75,7 +77,9 @@
                     <button formmethod="get" type="submit" onclick="location.href = 'update';" class="btn btn-primary" >Update Car</button>
                 </#if>
             </#if>
-
+        </td>
+        <td>
+            ${car.itemId.date}
         </td>
     </tr>
 

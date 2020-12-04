@@ -4,6 +4,7 @@ import models.auto.Car;
 import models.users.User;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "items")
@@ -19,6 +20,16 @@ public class Item {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user")
     private User user;
+    @Column
+    private Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public Item() {
     }

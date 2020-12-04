@@ -30,7 +30,9 @@ public class PersistenceCars<E> implements General<Car> {
             query = session.createQuery("from Car where brand.id = :model");
             query.setParameter( "model",Integer.parseInt(model));
         }else if(type.equals("Noimg")){
-            query = session.createQuery("from Car where image<>'noImg' ");
+            query = session.createQuery("from Car where image is not null ");
+        }else if(type.equals("lastday")) {
+            query = session.createQuery("from Car where itemId.date = (current_date - 1)");
         }else {
             query = session.createQuery("from Car");
         }
